@@ -105,19 +105,11 @@ def train():
 
     # imgs_train = imgs_train.astype(np.uint8)
 
-
-
-
     imgs_train, imgs_mask_train = load_train_data()
     imgs_mask_train = imgs_mask_train.astype('float32')
     imgs_train = imgs_train.astype('float32')
     imgs_mask_train /= 255.  # scale masks to [0, 1]
     imgs_train /= 255.  # scale masks to [0, 1]
-
-
-
-
-
 
     #print(imgs_mask_train[10, 11, 100, :, 0])
     #print(imgs_train[10, 11, 100, :, 0])
@@ -236,5 +228,5 @@ def predict():
 
 
 if __name__ == '__main__':
-    #train()
-    predict()
+    train()
+    #predict()
