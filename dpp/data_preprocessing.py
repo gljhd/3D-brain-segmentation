@@ -1,6 +1,7 @@
 import nibable
 import reader
 import segmentation as seg
+import numpy as np
 
 
 def Pipeline(dir):
@@ -22,3 +23,20 @@ def Pipeline(dir):
 
     return node
 
+def data_generator(batch_size, file_path):
+    lines = Pipeline(file_path)
+    img = []
+    label = []
+    t = 0
+    for x,y in lines:
+        if t == batch_size:
+            img = np.array(img).astype(np.float32)
+            label = np.array(label).astype(np.int32)
+            yield (img, label)
+            img = []
+            label = []
+            t = 0
+        else:
+            img.append(x)
+            label.append(y)
+            t = t + 1
